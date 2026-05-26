@@ -157,18 +157,18 @@
 - **Manager Groups** : if enabled, allows users to share records with their managers and manager subordinates groups
 #### Teams and Manual Sharing
 - **Teams :** 
-  **Opportunity team**
-  define roles for team members and set record-lvl access
-  can be viewed in list views and on reports
-  only give access to the one object
-  **Account team**
-  Read or Read/Write access & related objects (contacts, opportunities, cases)
-  define an account role for each team member
-  view an account team on the account page related list
-  **Case team**
-  allow users to grant access to their cases and related records to users, contacts, or add predefined case teams
-  admins can define member roles, create **predefined case teams**, configure assignment rules to automatically add case teams to cases, use up to three different teams for a single case
-  ![610](Pasted%20image%2020260526174404.png)
+	- **Opportunity team**
+		- define roles for team members and set record-lvl access
+		- can be viewed in list views and on reports
+		- only give access to the one object
+	- **Account team**
+		- Read or Read/Write access & related objects (contacts, opportunities, cases)
+		- define an account role for each team member
+		- view an account team on the account page related list
+	- **Case team**
+		- allow users to grant access to their cases and related records to users, contacts, or add predefined case teams
+		- admins can define member roles, create **predefined case teams**, configure assignment rules to automatically add case teams to cases, use up to three different teams for a single case
+		- ![610](Pasted%20image%2020260526174404.png)
 
 - **Manual Sharing:** allow users to grant one-off access to their individual records for users, roles, roles and subordinates and public groups
 	- record owners, their managers in the role hierarchy, and admins (sharing button)
@@ -178,7 +178,6 @@
 - object manager
 - **supported for the following objects :** custom objects, contracts, tasks, events
   +external objects, quotes, time sheets & entries
-- 
 - ![](Pasted%20image%2020260526180513.png)
 + ![](Pasted%20image%2020260526180130.png)
 - ![](Pasted%20image%2020260526180100.png)
