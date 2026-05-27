@@ -185,10 +185,336 @@
 - the proper handling of data including consent, notice, and regulatory obligations 
 - GDPR, CCPA
 ## <font color="#00b0f0">Lesson 5</font> Customize Standard Functionality
+#### evaluating before constructing your org
+- standard functionality: use
+- declarative: configure
+- appexchange: buy / get
+- programmatic: develop
+
+#### Custom Objects
+- CRRSS (configurable, Relational, Reportable, Searchable, Securable)
+
+#### Standard fields
+- All objects have a predefined set of fields
+- can't delete them but can use FLS and page layout techniques
+- **Customizable**: change the field label, add help text, add or edit values in picklists, add or edit lookup filters, set field history tracking, change the format of auto-number fields (classic only)
+- data classification fields
+
+#### Custom fields
+- new fields created on any standard or custom object
+- object customization, type changing, deleting
+- data loss when editing and deleting custom fields
+	- field's data will be lost, list views based on the field will be deleted, Assignment and escalation rules may be affected
+	- should only modify fields with no data, or consider using new fields
+	- max 15 days recovery chance : undelete or permanently erase them
+- Creating a new custom field
+	- Select Data Type
+	- ![](Pasted%20image%2020260527111046.png)
+	- Enter Details (Define field attributes)
+		- Description
+		- Help Text
+		- Required
+		- Unique
+		- External ID
+		- Default Value
+	- Set FLS
+	- Add to Page Layouts
+
+![](Pasted%20image%2020260527181147.png)
+#### Picklist fields
+- regional: APAC, EMEA, LATAM, US, Canada
+- single or multi-select - predefined list
+- data entry speed up, data quality only allowing permissible values, facilitatie searching, reporing, filtering
+- list of custom picklist fields with inactive values (picklist settings)
+	- useful for bulk deletion
+- **Global Picklists Value Sets** : across objects, restricted on the objects and can only be edited from the global setting
+- **Dependent Picklists** : Controlling / Dependent
+	- select a value in a controlling picklist, which filters the values available in a dependent picklist (+validation rule, page layout dependent required)
+	- multi-lvl dependencies
+	- ![](Pasted%20image%2020260527113401.png)
+#### **Object relationships**
+- defined on the child object using a custom field
+- types: 
+	- **Lookup**
+		- Lookups: fields that allow users to select a record from another object during data entry, A use B field values, parent(B)-child(A) relationship, A->B
+		- independent sharing
+		- lookup field on the child can be optional or required
+		- **lookup filter**: limit the records available in the lookup
+			- Source - Other fields on the same record
+			- Target - Fields on the records of the lookup object
+			- User - Fields on the user's record, profile, and role
+			- Directly related to the Target - Fields on record
+			- can be multiple layers deep
+			- child can have up to 40 parents
+			- lookup field on page layout depends on required / optional choice
+			- Roll-up summary fields not allowed
+	- **Master-Detail
+		- Access to a detail record is inherited from the master record
+		  (Master visible - Detail visible) unable to manually share detail records
+		- the detail record is automatically deleted when the parent is deleted
+		- the parent reference is always required on the child record
+		- lookup filter, allow reparenting
+		- **Junction Object**: a custom object with two Master-Detail relationships allows to model a many-to-many relationship (visible visible visible)
+		- up to 3 layers deep, standard object cannot be a child
+		- Relationship field on page layout is required
+		- Roll-up summary fields allowed
+	- **Hierarchy (User object only)**
+	- **Self Relationship (Lookup) (For Hierarchy-user, company)**
+#### Custom formula fields (mirror)
+- define calculations that reference other fields to display new numeric, text, date, or checkbox values specific to your business requirements
+- **Formula Fields**
+	- Read-Only
+	- can reference fields on the same object, or a parent or lookup object
+	- can't reference encrypted, description, or custom long text area fields
+	- are not searchable, or available for lead conversion or the weekly export service
+- custom field wizard
+	- simple formula : numerical fields from the same object
+	- advanced formula : funtions, non-numberical fields, fields from parent objects
+- **Cross-object formulas**
+	- reference fields only from parent objects
+	- access fields from upto 10 parent levels
 ## <font color="#00b0f0">Lesson 6</font> Customize the UI
 ## <font color="#00b0f0">Lesson 7</font> Data Management
 ## <font color="#00b0f0">Lesson 8</font> Declarative Automation
 ## <font color="#00b0f0">Lesson 9</font> The Future of Automation: Flow
 ## <font color="#00b0f0">Lesson 10</font> Create New with Clicks
 ## <font color="#00b0f0">Lesson 11</font> Analytics
+#### Reports
+- lists or summaries, enable to aggregate and analyze data in different ways
+- **Custom reports**
+	- created from existing reports
+	- built from scratch using available report types
+	- must be saved in a custom, private, or public folder
+	- can be overwritten or deleted
+- **Dashboard folders**
+	- access to reports and dashboards is controlled
+	- building subfolders to add more categories while access is still granted at the parent folder lvl
+	- different groups of users different access to the same folder 
+	- share with users, roles, roles & subordinates, public groups
+	- view, edit, manage permission
+- Overview
+	- ![](Pasted%20image%2020260527115726.png)
+- #### **Report types** : Predetermined combinations of related objects and fields used as starting points for new custom reports
+	- the objects and fields available
+	- the filters available (based on primary object)
+	- the default cols
+	- **Standard** : available by default for building reports on standard and custom objects and their related objects
+		- new custom fields are automatically added to standard report types
+		- standard report types show 'with'(**inner join**) relationships
+			- Account with Account Teams : only accounts that have related account teams
+	- **Custom** : With or Without (outer join)
+- #### **Report formats**
+	- **Tabular**
+		- Simplest and fasterst way to look at data
+		- best for creating lists of records or a list with a single grand total
+	- **Summary**
+		- Similar to tabular reports, but allow goruping rows of data, view subtotals, and create charts.
+		- can be used as the source report for dashboard components
+		- can group up to 3 x-axis(horizontal) rows maximum on a Summary report
+	- **Matrix**
+		- Similar to summary reports, but allow you to group and summarize data by both rows and columns
+		- Good for comparing related totals or comparing values in several fields
+		- can be used as the source report for dashboard components
+		- Must have minimally 1 x-axis field group before adding 1 vertical filed to make a Matrix report
+		- can group up to a max of 2 x-axis grouping fileds and 2 y-axis (vertical) grouping fields max
+	- **Joined**
+		- Combine multiple views (blocks) of related info in a single report (up to 5 blocks)
+		- each block 'sub-report' can display data from the same report or from a different report type
+		- can be used as the source report for dashboard components but must have a chart
+	- ![](Pasted%20image%2020260527161756.png)
+- #### **Report groupings and summaries**
+	- have implications for subtotals and grand totals in reports
+	- ![585](Pasted%20image%2020260527135725.png)
+- #### **Report filters and filter logic**
+	- Add up to 20 additional filters to a report
+	- and, or, not logic
+	- () parentheses (()) nested parentheses offset priority conditions
+- #### Summary formulas
+	- create calculated summaries of your numerical fields
+	- add up to 5 custom summary formulas to summary and matrix reports
+	- reference formula fields, but not other summary formulas
+	- only display on summary rows, not detail (record) rows
+- #### Row level formulas
+	- adds a row-level formula column to the report that makes calculations on every report row
+	- text concatnation, data comparision, simple conditional statements
+- #### Conditional formatting
+	- Conditional Formatting Rules (custom ranges and colors)
+	- summary or matrix reports
+	- mus contain at least 1 summary field or custom summary formula
+	- Lightning Experience, up to 5 rules & define custom colors for each range
+	- breakpoint values & bin range colors
+- #### Report Chart
+	- **Chart:** graphical representations of the data in the summary rows or columns of a report
+	- no impact on the report
+	- Types
+		- **Horizontal Bar** : Compare many items
+		- **Vertical Bar (Column)** : Fewer items or over time
+		- **Stacked Bar Chart** : Compare absolute values side by side
+		- **Donut** : Compare share of total
+		- **Funnel** : Sales process
+- #### Export
+	- csv xlsx xls
+	- report charts will not export
+- #### Subscribe, Schedule, and Send
+	- email, the folder should be shared
+	- add conditions based on sum of the amount or record count in report to be notified (conditional notification)
+	- run report as me -> data under my permission
+	- run report as 'someone' (standard) -> data under their permissions
+- **Running User**
+	- you run the report, and recipients see report data in the emailed report as you
+	- they may see more or less data than they normally see
+	- data under their permissions
+#### Dashboards
+- visual representation using multiple custom reports data
+- use a running user to determine what data is visible
+- can have up to 20 components per dashboard
+- display data as of the last time the dashboard was refreshed
+- from source report to dashboard component
+	- **Component** : use the first summarized field in the source report
+		- Table, Charts, Gauge, Metric
+		- Horizontal Bar: Compare many items
+		- Vertical Bar (Column): Fewer items or over time
+		- Line: Over time
+		- Stacked Bar Chart: Compare absolute values side by side
+		- Gauge: Show a single value in a range of custom vaues
+		- Donut: Compare share of total
+		- Tables: Show conditional highlighting and chatter photos
+		- funnel: sales process
+		- metric: display one key value
+		- scatter chart: show correlation between two measures
+	- **Properties**
+		- must have the access to the folder in which the dashboard is saved
+		- Me
+		- Another Person (Fixed)
+		- The Dashboard Viewer (Dynamic)
+			- can't schedule refreshes for dynamic dashboards and must be refreshed manually
+		- Optionally, let viewers choose whom they view the dashboard as
+	- #### Subscribe, Schedule, and Send dashboards
+		- subscrive yourself and other users, gorups, or roles to receive refreshed dashboards results by email on a schedule that you set
+		- All email recipients must have access to the folder the dashboard is saved in
+		- Optionally, subscribe to a dashboard to be refreshed without receiving refreshed results by email
+- #### Analytics Home
+	- search for, access, and create both reports and dashboard from a single tab
+	- view recently updated, recently viewed, and favorite analytics
+	- Create Collections to organize analytics content
 ## <font color="#00b0f0">Lesson 12</font> The Agentic Enterprise
+#### AI agents
+- handle routine tasks so humans can focus on creativity, relationships & impact
+#### Salesforce
+- agentic enterprise
+	- 
+- **Agentforce 360** : humans, agents, apps & data
+	- no code & vibe code
+	- a set of tools
+		- Agentforce Builder : create and customize agents
+			- Topics, Actions (flows, Apex, prompts, APIs)
+		- Agentforce Atlas Reasoning Engine : takes action
+			- RAG, Advanced Planner
+	- a suite of agents
+		- autonomous
+			- Agentforce Service Agent, Agentforce Lead Nurturing, Agentforce Personal Shopper
+		- assistive
+			- Agentforce Employee Agent, Agentforce Sales Coach, Agentforce Campaign Optimizer
+- ![](Pasted%20image%2020260527160337.png)
+- Siloed systems & data, Manual workflows, Reactive support, Burnout staff
+	- Fully unified data, Conversation, AI-first, Always-on experiences, Ability to focus on mission
+- Einstein Trust Layer: Role, Data, Actions, Guardrails, Channel
+	- secures all operations through data masking and toxicity detection
+- plan, evaluate, refine cycle
+- Human-in-the-loop
+- ![](Pasted%20image%2020260527161326.png)
+#### Prompt
+- question, instruction, context
+- UI, AI Model, Data
+- Prompt Template
+	- Sales Email, Field Generation, Flex(ible)-invocable, Record Summary
+![](Pasted%20image%2020260527161439.png)
+#### Troubleshooting Agents
+공유해주신 링크(`ai.copilot_troubleshoot.htm`)는 세일즈포스의 GenAI 기능인 **Einstein Copilot(현재의 Agentforce Agent)의 작동 오류 및 성능 문제를 진단하고 해결(Troubleshooting)하는 공식 가이드** 페이지입니다.
+
+해당 문서의 핵심 내용을 핵심 진단 도구와 문제 유형별 해결 방법으로 분류하여 정리해 드립니다.
+
+### 1. 핵심 문제 해결 프로세스 & 도구
+
+문서에서 가장 중요하게 강조하는 진단 도구는 '향상된 이벤트 로그(Enhanced Event Logs)'입니다. 에이전트가 왜 엉뚱한 대답을 하거나 작동하지 않는지 추적할 수 있는 블랙박스 역할을 합니다.
+
+- **향상된 이벤트 로그(Enhanced Event Logs) 활성화:** * **기능:** 에이전트 세션 내에서 발생한 이벤트뿐만 아니라 사용자가 보낸 실제 메시지, 에이전트의 내부 판단 과정, 발생한 에러 코드 등을 한곳에서 실시간으로 확인할 수 있습니다. (7일간 저장)
+    
+    - **설정 경로:** `Setup -> Agentforce Agents -> 해당 에이전트 선택 -> 'Keep a record of conversations with enhanced event logs...' 체크 후 저장`
+        
+
+### 2. 주요 문제 유형 및 트러블슈팅 방법
+
+#### ① 에이전트(코파일럿)가 사용자의 요청을 이해하지 못하거나 엉뚱한 행동을 할 때 (Intent Recognition Error)
+
+- **원인:** 에이전트에 할당된 액션(Actions)의 지시사항(Instructions)이 모호하거나 부족하기 때문입니다.
+    
+- **해결책:** * 이벤트 로그를 확인하여 시스템이 유저의 입력을 어떤 액션으로 매핑하려 했는지 확인합니다.
+    
+    - Agentforce Builder(에이전트 빌더)에서 액션의 Description(설명)과 Instructions(지시사항)을 자연어로 더 구체적이고 명확하게 수정합니다. (예: "언제 이 액션을 실행해야 하는지" 명시)
+        
+
+#### ② 데이터를 제대로 찾아오지 못할 때 (Knowledge / Data Retrieval Issue)
+
+- **원인:** 지식 소스(Knowledge Source)나 레코드 검색 필터 셋팅이 잘못되었거나, Data Cloud 연결에 문제가 있는 경우입니다.
+    
+- **해결책:** * 에이전트가 참조하는 **Knowledge Base(지식창고)의 싱크 상태와 권한을 확인**합니다.
+    
+    - 유저의 프로필/권한 세트(Permission Set)가 해당 데이터 오브젝트나 필드를 읽을 수 있는 권한(`Read` 권한)을 가지고 있는지 체크합니다.
+        
+
+#### ③ 시스템 에러 및 예외 발생 시 (System Error / Drop)
+
+- **원인:** 세션 타임아웃, LLM(거대언어모델) 게이트웨이 오류, 혹은 Apex 클래스/Flow 오류가 얽힌 경우입니다.
+    
+- **해결책:** * **Event Log의 Session ID**를 클릭하여 구체적인 에러 메시지를 확인합니다.
+    
+    - 에이전트가 호출하는 내부 **Flow(플로우)나 Apex Action**에 버그가 없는지 디버깅 툴로 확인합니다.
+        
+
+### 💡 관리자를 위한 권장 테스트 전략
+
+가이드에서는 에이전트를 운영 환경(Production)에 배포하기 전, **Agentforce Testing Center** 및 Builder 내부의 시뮬레이터(Simulate/Live Test Modes)를 활용하여 시나리오 테스트를 반복할 것을 권장하고 있습니다.
+
+문제가 생겼을 때는 [Setup -> Event Logs]에서 사용자의 실제 발화와 시스템 반응 속성(Dropped 이유 등)을 교차 검증하는 것이 문제 해결의 첫걸음입니다.
+
+공유해주신 링크(`ai.agent_setup_explore_types.htm`)는 세일즈포스의 자율형 AI 에이전트 서비스인 **Agentforce가 제공하는 에이전트의 종류(Types)와 비즈니스 목적별 아키텍처**를 설명하는 공식 가이드 페이지입니다.
+
+세일즈포스 에이전트 유형을 한눈에 파악하실 수 있도록 핵심 내용을 명확하게 정리해 드립니다.
+
+### 1. Agentforce 에이전트의 3가지 핵심 유형
+
+세일즈포스는 비즈니스 요구사항과 대상(Target)에 따라 크게 3가지 형태의 에이전트를 제공합니다.
+
+#### ① 서비스 에이전트 (Service Agent)
+
+- **목적:** 고객(End-User)을 직접 응대하는 자율형 고객 서비스 에이전트입니다.
+    
+- **특징:** 과거의 시나리오 기반 챗봇과 달리, 대화의 문맥을 이해하고 세일즈포스 데이터 및 지식창고(Knowledge)를 기반으로 직접 문제를 해결합니다. (예: 반품 처리, 예약 변경, 주문 추적 등)
+    
+- **연결 채널:** 웹챗(Messaging for In-App and Web), 왓츠앱, SMS 등 다양한 고객 접점 채널에 연동할 수 있습니다.
+    
+
+#### ② 직원 에이전트 (Employee Agent / 기존 Copilot)
+
+- **목적:** 내부 직원(사내 사용자)의 업무 생산성을 높여주는 AI 비서입니다.
+    
+- **특징:** 세일즈포스 화면 내부나 슬랙(Slack) 등에서 작동하며, 직원의 지시에 따라 복잡한 작업을 대신 수행합니다. (예: "오늘 마감인 영업 기회 요약해 줘", "특정 고객사 미팅 준비용 브리핑 문서 작성해 줘" 등)
+    
+
+#### ③ 파트너 에이전트 (Partner Agent)
+
+- **목적:** 기업의 외부 비즈니스 파트너나 유통업체(Distributor)를 지원하는 에이전트입니다.
+    
+- **특징:** Experience Cloud(익스피리언스 클라우드) 포털 등에 배치되어, 파트너사가 제품 정보를 조회하거나 리드(Lead)를 등록하고 등록된 계약을 갱신하는 등의 복잡한 B2B 프로세스를 자율적으로 도와줍니다.
+    
+
+### 2. 에이전트 유형을 선택하고 빌드할 때의 기준
+
+문서에서는 에이전트를 구축하기 전에 다음 요소들을 고려하여 적절한 유형을 탐색하고 설정하라고 안내합니다.
+
+- **사용자 경험(User Experience):** 이 에이전트와 대화할 대상이 '익명의 웹사이트 방문자'인지, '로그인한 내부 직원'인지에 따라 보안 및 대화 톤앤매너를 다르게 설계해야 합니다.
+    
+- **액션 및 권한 범위(Actions & Permissions):** 에이전트 유형에 따라 접근할 수 있는 세일즈포스 오브젝트 권한과 실행할 수 있는 플로우(Flow) 및 API 범위가 달라집니다. 내부 직원용 에이전트는 상대적으로 더 넓은 데이터 접근 권한을 가집니다.
+    
+- **데이터 소스(Data Sources):** 에이전트가 신뢰할 수 있는 답변을 하도록 Data Cloud, Salesforce Knowledge, 내부 레코드 필드 등을 어떤 방식으로 에이전트 유형에 결합할지 정의해야 합니다.
