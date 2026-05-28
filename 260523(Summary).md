@@ -13,6 +13,7 @@
 
 #### Object
 - **Table of Data**
+- User object
 - Row = Record
 - Column = Field
 - **Standard objects**
@@ -21,6 +22,14 @@
 	- **Object Manager** : fields, page layouts, compact layouts customizations (in Setup : Salesforce backend)
 		- handles standard, custom objects
 	- **Schema Builder** : objects relationships
+- Additional Standard objects
+	- Entitlement : SLA
+	- Event : Calendar (not frequently used) - record page
+	- Quote : Quoatation
+	- Pricebook : Various price values, used with opportunities
+	- Product : used with opportunities
+	- Order : Sales Order
+	- Campaign Member : Campaign Target (lead, contact)
 
 #### Sandbox
 - production org replica / development, testing, or training
@@ -78,6 +87,7 @@
 - Building, Floors, Offices, Cabinets
 - MFA (Multi-factor authentication)
 - SSO (Single Sign On)
+- Profile - Login IP Ranges, Login Hours
 
 #### Health Check
 - More Restriction = More Score
@@ -95,13 +105,13 @@
 	- Minimum Access - Salesforce : Access Activites, Chatter Internal User, Lighning Console User, and View Help Link permissions
 		- least-privilege profile, add more permissions via permission sets and permission set groups, custom profiles' starting point
 - login hours & login IP ranges Restriction (login hour, IP range, org-wide trusted IP range, autentication)
-- Login hours, Login IP ranges, Record Type & App (defaults), Page Layout Assignment
+- **Login hours, Login IP ranges, Record Type & App (defaults), Page Layout Assignment**
 
 #### Permission set
 - grants additional permissions to specific users that layer on top of their existing profile
 - assign to users from the permission set / user record
 - **user's total access = profile + permission sets**
-- User Permissions (system / App), Object Permissions (CRED), Field Permissions, Tabs, Record Types & Apps (not defaults), Connected App Access, Apex Classes, Visualforce Pages, Gustom Permissions
+- **User Permissions (system / App), Object Permissions (CRED), Field Permissions, Tabs, Record Types & Apps (not defaults), Connected App Access, Apex Classes, Visualforce Pages, Gustom Permissions**
 
 #### **Permission set groups**
 - allow admins to bundle permission sets together
@@ -136,7 +146,7 @@
 #### **Organization-wide defaults**
 - ![629](Pasted%20image%2020260526170431.png)
 - OWD setup guide : pick the lowest access lvl user
-  PRIVATE -> PUBLIC READ-ONLY -> PUBLIC READ/WRITE
+  PRIVATE -> PUBLIC READ-ONLY -> PUBLIC READ/WRITE -> PUBLIC READ/WRITE/TRANSFER (Lead, Case Frequent Transfer)
 - **Sharing settings** : Public, Hybrid, Private
 - ![](Pasted%20image%2020260526170941.png)
 - Default Internal open, Default External Access closed
@@ -146,6 +156,7 @@
 - custom object records do not have to be inherited
 - when creating a new role, define the lvl of access an account owner will have to the related records owned by users who are not their subordinates (Contact, Opportunity, Case - OWD set for each object: No Access, View, or Edit dependent)
 - Regardless of role, a user who owns a child record of an account(opportunity, case, contact) gains read acess on that account. can not overwrite this access
+- sharing settings 'grant access using hierarchies' check mandatory
 #### Sharing Rules
 - grant additional record access to groups of users on an object-by-object basis
 - Excepetions to OWD, Irrelevant for public data access models, **one direction giving**
@@ -155,6 +166,7 @@
 - **What lvl of access** : Read Only, Read / Write
 - **Public Groups** : admin defined goruping of users (individual users, roles, roles and subordinates, other public groups) self one sharing rule -> one big public group
 - **Manager Groups** : if enabled, allows users to share records with their managers and manager subordinates groups
+- recalculate non working hours
 #### Teams and Manual Sharing
 - **Teams :** 
 	- **Opportunity team**
@@ -197,7 +209,7 @@
 #### Standard fields
 - All objects have a predefined set of fields
 - can't delete them but can use FLS and page layout techniques
-- **Customizable**: change the field label, add help text, add or edit values in picklists, add or edit lookup filters, set field history tracking, change the format of auto-number fields (classic only)
+- **Customizable**: change the field label, add help text, add or edit values in picklists, add or edit lookup filters, set field history tracking, change the format of auto-number fields (classic only) rename tabs and labels (Label O / API Label X)
 - data classification fields
 
 #### Custom fields
@@ -208,8 +220,9 @@
 	- should only modify fields with no data, or consider using new fields
 	- max 15 days recovery chance : undelete or permanently erase them
 - Creating a new custom field
-	- Select Data Type
+	- **Select Data Type** (Schema builder)
 	- ![](Pasted%20image%2020260527111046.png)
+	  Picklist, Roll-up Summary (Account -> Opportunity)
 	- Enter Details (Define field attributes)
 		- Description
 		- Help Text
@@ -227,7 +240,7 @@
 - data entry speed up, data quality only allowing permissible values, facilitatie searching, reporing, filtering
 - list of custom picklist fields with inactive values (picklist settings)
 	- useful for bulk deletion
-- **Global Picklists Value Sets** : across objects, restricted on the objects and can only be edited from the global setting
+- **Global Picklists Value Sets** : across objects, restricted on the objects and can only be edited from the global setting (reuse) region / address Picklist Value Sets
 - **Dependent Picklists** : Controlling / Dependent
 	- select a value in a controlling picklist, which filters the values available in a dependent picklist (+validation rule, page layout dependent required)
 	- multi-lvl dependencies
@@ -258,8 +271,9 @@
 		- up to 3 layers deep, standard object cannot be a child
 		- Relationship field on page layout is required
 		- Roll-up summary fields allowed
+		- account - opportunity, contact
 	- **Hierarchy (User object only)**
-	- **Self Relationship (Lookup) (For Hierarchy-user, company)**
+	- **Self Relationship (Lookup) (For Hierarchy-user, company, campaign)** Objects
 #### Custom formula fields (mirror)
 - define calculations that reference other fields to display new numeric, text, date, or checkbox values specific to your business requirements
 - **Formula Fields**
@@ -274,6 +288,54 @@
 	- reference fields only from parent objects
 	- access fields from upto 10 parent levels
 ## <font color="#00b0f0">Lesson 6</font> Customize the UI
+#### App Manager
+- ![](Pasted%20image%2020260528172626.png)
+- Lightning Experience App Manager
+- view, create, visible, manage
+#### Home page
+- standard or custom lightning components
+- update component properties
+- assignable to user profiles
+- Setup Home Page < special
+#### List views
+- save list views for future use
+- filter on a specific fields
+- search the field data in list views
+- sharing settings
+- **grid, kanban, split**
+- edit records
+- appropriate name, visibility, up to 15 cols, up to 10 filters
+#### Page layout
+- controls fields, sections, related lists, buttons
+- sections - field container wrapper (Dynamic forms visibility)
+	- layout control, tab order control
+- Lightning App Builder(Edit Page)
+- Page Layout Editor(Object Manager) - fields, related lists, quick actions, buttons
+	- sstandard / custom button, quick action for list view
+- Can be assigned to a profile
+#### Enhanced related lists
+- can show up to 10 cols, resize and sort cols, perform mass actions, wrap text
+#### Buttons, Links, Actions
+- Buttons, Links
+	- serve the same function - send a user to an external place or to launch OnClickJavaScript or Visualforce
+- Actions
+	- Add functionality to Salesforce data
+	- create records, update records, log calls (global)
+	- object-spcific actions
+#### Record types
+- allow admins to offer users different page layouts and picklist values for different business scenarios, based on their profiles
+- each object has a default master record type, but you can create new ones
+- ![](Pasted%20image%2020260528180008.png)
+- ![](Pasted%20image%2020260528180408.png)
+- Opportunities, cases, solutions, leads - record type
+- ![](Pasted%20image%2020260528180905.png) states exist (account doesnt require a business process to be created)
+- allow users to access multiple page layouts per object
+- allow unique data to be gathered for different business scenarios
+- can be assigned to users via their profiles or permission sets(dynamic forms)
+#### Path
+- guides users along the steps in a process
+- helps users succeed with step-specific guidance (tips, links, company policy info)
+- can be customized
 ## <font color="#00b0f0">Lesson 7</font> Data Management
 ## <font color="#00b0f0">Lesson 8</font> Declarative Automation
 ## <font color="#00b0f0">Lesson 9</font> The Future of Automation: Flow
@@ -518,3 +580,133 @@
 - **액션 및 권한 범위(Actions & Permissions):** 에이전트 유형에 따라 접근할 수 있는 세일즈포스 오브젝트 권한과 실행할 수 있는 플로우(Flow) 및 API 범위가 달라집니다. 내부 직원용 에이전트는 상대적으로 더 넓은 데이터 접근 권한을 가집니다.
     
 - **데이터 소스(Data Sources):** 에이전트가 신뢰할 수 있는 답변을 하도록 Data Cloud, Salesforce Knowledge, 내부 레코드 필드 등을 어떤 방식으로 에이전트 유형에 결합할지 정의해야 합니다.
+
+## CRM Basic
+#### Certifications
+- Foundation
+	- Admin
+- Developer
+	- Platform Developer I
+- Architect
+- Marketing
+	- MC Email Specialist
+	- MCE Adminstrator
+	- MCAE Specialist
+- Salesforce Consultant
+	- Data, Sales, Service Cloud Consultant
+- Agentforce Specialist
+
+#### Questions
+- 라이선스
+	- Company setting
+- Business Hours
+	- 영업시간
+	- login hours랑 다름(이때만 로그인 가능해요~)
+- Fiscal Year, Multi-Currency
+	- 한번 활성화하면 비활성화 불가
+- Data Protection and Privacy - Individual Obj
+
+#### User
+- Username - 이메일 형식, 중복x, 체크방식 추가 기능
+- 비밀번호 까먹으면 - reset
+- 유저 여러명 넣어볼 수 있음, 필드가 적음, data loader
+- User360 - 어디에 할당되어 있는지
+- 퇴사자 - active 지우기, 유저 할당 license 반환된
+- 잠시 떠나있으면 Freeze
+- Login as
+- internal 내부 직원, external 외부 사용자 조회 필요할 때
+
+영업, 프리세일즈 (demo 엔지니어), 서비스 엔지니어
+
+- app builder field location dynamic form field filter (set field visibility) 
+	- Save - Activate
+- page layouts - mobile ui, button 
+- Company Layouts - Kanban, highlights panel
+
+#### Einstein Scoring
+- Opportunity, Lead
+- Einstein Lead Scoring
+- Forecasting
+- Sales Forecasting (quantity)
+
+#### Campaign
+- Member : target
+- Hierarchy : Group based management
+- Influence : contribution to opportunities
+- Budgeted Cost / Expected Revenue : for Reporting
+
+#### escalation rules
+
+#### service
+- knowledge
+
+#### Omni Channel
+- Case, Lead handling issues allocation
+- Assignment Rule 대비 better
+#### Entitlement & Milestone
+- SLA(Service Level Agreement)
+	- 고객 제공 서비스 수준 명시 계약
+- Entitlement
+	- 개별 Account 지원받을 수 있는 서비스 지원 레벨 정의
+	- Account와 Look-up 관계
+- Entitlement Process & Milestone
+	- 최초 응답 시간, 해결 기한 SLA 포함 시, 각 단계별 완료 시한 관리 기능
+
+#### Task & Event
+- activity timeline
+
+crm jpkt
+
+#### Chatter
+- group - private, public, unlisted, broadcasting
+
+#### App Exchange
+- agentexchange
+- component based
+- consultant
+
+#### Data Management Tool
+- Import Wizard - 소량, 중복 방지, workflow triggering yes or no
+- Data Loader - import, export, delete&bulk
+- 현업:chrome extension
+
+#### Audit Trail
+- Meta data tracking
+
+#### Data validation
+- Field Data Type, Required field, Unique field
+
+#### Merge dulicate leads
+- business accounts, contacts, leads, person accounts(b2c), custom objects' records
+
+#### Report and Dashboard folders
+- Report filters and filter logic
+- Bucket Column (Salutation to Gender)
+
+#### Running User
+- Report vs Dashboard
+
+#### Automation
+- Flow - 50 versions, only one is allowed at a time
+- review, decision making - approval process(re)
+	- examples
+
+Dev free trial
+
+## Agentforce
+#### Prompt builder
+- Grounding - adding context
+- Trust Layer
+- 추론 - Agentic AI loop, 액션 - flow, apex
+- Agent Builder - Topics(겹침ㄴㄴ), Instructions(명확한 지시, 긍정>부정), Actions
+
+#### Agentforce inside sales
+- performed by agents
+- Service, Sales, Mktg & SDR
+
+salesforcego
+einstein setup
+
+agentforce studio
+
+Dev edition
