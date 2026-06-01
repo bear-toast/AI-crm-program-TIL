@@ -323,6 +323,7 @@
 	- create records, update records, log calls (global)
 	- object-spcific actions
 #### Record types
+- Nowadays, the trend is to minimize to a single page layout per profile, utilize record types strictly for picklist and process control, and dynamically drive fields and layouts using Dynamic Forms and Permission Sets.
 - allow admins to offer users different page layouts and picklist values for different business scenarios, based on their profiles
 - each object has a default master record type, but you can create new ones
 - ![](Pasted%20image%2020260528180008.png)
@@ -337,6 +338,106 @@
 - helps users succeed with step-specific guidance (tips, links, company policy info)
 - can be customized
 ## <font color="#00b0f0">Lesson 7</font> Data Management
+#### Data backup options
+- **Reports**
+	- csv, excel, db
+	- manual, automated
+- **Data Loader (io)**
+	- export specific data to csv, xls, xlsx
+	- manual
+- **Data Export**
+	- obtain a complete set of Salesforce data for archiving
+	- export to csv
+	- include images, documents, attachments
+	- Salesforce Files, Salesforce CRM Content document versions
+	- can be automated, scheduled, emails you when the zip files are ready
+#### **Managing Metadata**
+- Change Sets
+	- Copy meta data from production to a sandbox or from one sandbox to another
+- Sandbox Refresh
+	- By refreshing a related sandbox, configuration metadata is copied over automatically
+- Force.com Migration Tool
+	- Java/Ant-based command-line utility for moving metadata between a local directory and a Salesforce org
+#### Data Import wizard
+- import new records, update existing records
+- accounts, contacts, leads, solutions, campaign members and custom objects
+- solution: a standard object which records solutions for customer complaints or frequently common issues (linked to Cases)
+- matching types
+	- duplicates identification when you add new records
+	- matches records when you update existing ones
+	- ![362](Pasted%20image%2020260601174247.png)
+- import fewer than 50,000 records
+- prevent duplicates when importing new records
+- choose whether or not to trigger workflow rules and processes
+#### Data Loader
+- bulk import or expor of data, client based requried installation and authentication
+- insert, update, delete, export, upsert for both standard and custom objects for up to 5,000,000 records
+- obtain salesforce record IDs
+- load objects such as products or opportunities
+- save mappings for later use
+- scheduling not supported
+- to individual csv? unable to restore relationship
+- metadata extraction not supported
+#### Dataloader.io
+- 100% cloud solution, manage bulk data updates
+- import, export, delete
+- Salesforce login using oAuth, no signups or security tokens required
+- create reusable tasks and schedule them periodically
+- find related IDs while mapping
+- ![](Pasted%20image%2020260601174939.png)
+- just csv peridoic export, not a lot data
+#### Data import best practices
+1. Create any necessary fields prior to the import
+2. Clean up data prior to import
+3. export any necessary record ID fields
+4. Prepare and upload a test batch
+- Don't perform updates to existing records duing normal business hours
+- Check if there is any automation set up (flow)
+- if (owner.field.equals("")) { default_owner = importing_user};
+- why fail
+	- Universally required fields
+	- Unique fields
+	- Data validation rules
+	- Picklist value not allowed
+#### Mass delete records
+- delete <u>standard object</u> records meeting specific criteria
+- to be deleted records will be displated
+- will alert you of any child records that would also be deleted
+- Best practice
+	- requrest or perform a backup before using it
+- Deleted records are stored in the recycle bin for another 15days, unless you choose permanently delete
+- recycle bin
+	- max 15 days
+	- my recycle bin is available to all users
+	- records can be restored by clicking Restore
+	- permanently delete records by selecting them and clicking Delete
+#### Mass transfer tool
+- transfer multiple accounts, leads, service contracts, and custom objects from one user to another
+- depending on the object, options to transfer related records might exist
+- deactuvate, freeze
+#### Field history tracking
+- enables it on an object to track changes on up to 20 standard or custom fields on each object
+- changes can be viewed on a record's history related list or through history reports
+	- Date and time, user, old and new values (not on multi-select picklists and large text fields)
+#### Data validation
+- Ensure the integrity of data before it is saved
+	- System Data Validation
+		- Out-of-the-box validation
+		- setting simple field properties to ensure valid data entry
+			- field data type
+			- required field
+			- unique field
+	- custom validation rules
+		- enforce more complex conditions (one or more fields, specific to your biz processes)
+- mandatory
+#### Duplicate leads
+- Web-to-lead : Forgetting to search for a lead (already existing leads)
+- Importing from lists : Private sharing model
+- **Merge** : lead record - duplicates - master - field values to keep - confirm
+	- can merge 2 or 3 leads at a time
+- **Duplicate Management** : helps to manage duplicates for Biz accounts(B2B), contacts leads, person accounts(B2C), records created from custom objects
+	- ![](Pasted%20image%2020260601181037.png)
+	- ![](Pasted%20image%2020260601182917.png)
 ## <font color="#00b0f0">Lesson 8</font> Declarative Automation
 ## <font color="#00b0f0">Lesson 9</font> The Future of Automation: Flow
 ## <font color="#00b0f0">Lesson 10</font> Create New with Clicks
