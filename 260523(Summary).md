@@ -197,7 +197,7 @@
 - the proper handling of data including consent, notice, and regulatory obligations 
 - GDPR, CCPA
 ## <font color="#00b0f0">Lesson 5</font> Customize Standard Functionality
-#### evaluating before constructing your org
+#### <u>evaluating before constructing your org</u>
 - standard functionality: use
 - declarative: configure
 - appexchange: buy / get
@@ -420,14 +420,14 @@
 - changes can be viewed on a record's history related list or through history reports
 	- Date and time, user, old and new values (not on multi-select picklists and large text fields)
 #### Data validation
-- Ensure the integrity of data before it is saved
-	- System Data Validation
+- Ensure the integrity of data **before** it is saved
+	- System Data Validation (runs first)
 		- Out-of-the-box validation
 		- setting simple field properties to ensure valid data entry
 			- field data type
 			- required field
 			- unique field
-	- custom validation rules
+	- custom validation rules (runs second)
 		- enforce more complex conditions (one or more fields, specific to your biz processes)
 - mandatory
 #### Duplicate leads
@@ -439,6 +439,39 @@
 	- ![](Pasted%20image%2020260601181037.png)
 	- ![](Pasted%20image%2020260601182917.png)
 ## <font color="#00b0f0">Lesson 8</font> Declarative Automation
+#### Overview
+- Lead
+	- Web-to-Lead
+	- Assignment Rules
+	- Auto-Response Rules
+- Case
+	- Web-to-Case
+	- Email-to-Case
+	- Escalation Rules
+- Opportunities
+	- Big Deal Alerts
+	- Update Reminders
+- All Objects
+	- Workflow
+	- Process Builder
+	- Approval Processes
+	- Validaiton Rules
+	- Flow
+#### Email templates (lightning and classic)
+- should be created before using in automations
+- communication templates are accessed by the folder they are saved in
+	- access levels include Read & Read/Write
+	- Accesible by all users, hidden by all users, or by certain groups (roles, roles and subordinates and public gorups)
+- lightning email templates
+	- increase productivity and ensure consistent messaging
+	- merge fiels, field data from Salesforce records
+	- Email action on a record page / Email Templates tab
+- Enhanced letterheads
+	- header footer standardization (company's logo and contact info, legal disclaimers and subscription links)
+	- rich text editor or custom HTML
+	- merge fields, images, and links
+#### Validation Rules
+
 ## <font color="#00b0f0">Lesson 9</font> The Future of Automation: Flow
 ## <font color="#00b0f0">Lesson 10</font> Create New with Clicks
 ## <font color="#00b0f0">Lesson 11</font> Analytics
