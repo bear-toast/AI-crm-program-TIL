@@ -442,12 +442,62 @@
 #### Overview
 - Lead
 	- Web-to-Lead
-	- Assignment Rules
-	- Auto-Response Rules
+		- custom fields
+			- ensure fields capture the information you need from the website and specify how they map when the lead is converted
+			- check default status, record types and lead settings
+		- queues
+			- create any needed queues
+			- records await processing by assigned members
+			- queue members can contain any combination of public groups, roles, roles + subordinates, and users
+			- when you create a queue, a view is automatically added to the object's(such as lead, case, or custom object) list views
+			- members of the queue are free to accept records (lead, case, or custom object) from the queue
+			- assisgn tasks to a queue to share work efficiently. when a task is assigned to a queue, any of the members form that particular queue can pick the task, which gives all members of a queue full access to the record
+		- assignment rules
+			- create or activate a rule that determines HOW leads are assigned
+		- email templates
+		- org-wide email addresses for auto-responses
+		- auto-response rules to send targeted email responses
+		- when you enable it, you specify a default lead creator, and the email response template used when no auto-response rules apply
+		- once you have enabled the feature, you can select any field on the lead or case object to be generated in html(web form)
+	- Assignment Rules : automate lead routing
+		- assign leads or cases to individaul users or queues vased on the criteria
+		- only one rule can be active at any time
+		- each rule can contain multiple entries, routing records according to several criteria
+	- Auto-Response Rules : automate responses to the new lead
+		- lead/case  
+		- respond to the web submission of leads or cases with a specific email, bssed on the criteria
+		- only one rule can be active at any time
+		- each rule can contain multiple entries, sneding a different email template based on the criteria you set
+		- users do not get auto-responses
+	- Limit - 500 per 24 hour period
 - Case
 	- Web-to-Case
 	- Email-to-Case
-	- Escalation Rules
+		- custom fields
+			- ensure your fields capture the information you need from the website
+			- set the default case status
+		- queues
+			- create any needed queues
+		- assignment rules
+			- create or activate a rule that determines how cases are assigned
+		- email templates
+			- create any necessary email templates
+		- org-wide email addresses
+			- create any necessary org-wide email addresses from which to send auto-responses
+		- auto-response rules
+			- create or activate a rule to send targeted email responses
+		- automatically creates a case from an inbound email
+		- uses the sender's email address to associate a contact to the case
+		- uses email content to auto-populate case fields
+		- automatically associates customer email replies, including attachments, with the case
+		- triggers assignment, auto-response, escalation, workflow rules, and processes
+	- Escalation Rules (Cases only)
+		- automatically re-assign a case and/or notify a user if the case is not dealt with within a certain period of time
+		- choose to change owner to a queue or to another user
+		- configure rule entries to define the order, criteria, and escalaation actions
+		- specify time frame (mins or hours) for escalation if case has not been closed
+		- consider enabling early triggers in support settings
+	- Limit - 5000 per 24-hour period
 - Opportunities
 	- Big Deal Alerts
 	- Update Reminders
@@ -470,8 +520,32 @@
 	- header footer standardization (company's logo and contact info, legal disclaimers and subscription links)
 	- rich text editor or custom HTML
 	- merge fields, images, and links
-#### Validation Rules
-
+#### Data Validation
+- ensure the integrity of data before it is saved
+- **System Data Validation (runs first)**
+	- Out-of-the-box validation
+	- setting simple field properties to ensure valid data entry
+		- Field data type
+		- Required field
+		- Unique field
+- **Custom Validation Rules (runs second)**
+	- Validation you build
+	- enforce more complex conditions, involving one or more fields, specific to your business processes
+	- can contain a formula or expression that evaluates the data in one or more fields and returns a value of "True" or "False"
+	- ![](Pasted%20image%2020260609174223.png)
+#### Required and Unique fields
+- system lvl, force users to always enter a value, or to prevent records with duplicate values
+- hard requirements applying to UI and API
+- ![433](Pasted%20image%2020260609173916.png)
+- making a field required on a page layout (UI only) is considered a "soft" requirement
+#### Lead Conversion
+- when a lead is converted by a user
+	- the info from the standard lead fields is inserted into standard account and contact fields (mapping fields to an opportunity object record is optional)
+	- custom lead fields must be mapped manually (to custom Account, Contact, and Opportunity fields)
+		- same data type required
+		- ![](Pasted%20image%2020260609181220.png)
+#### Other ways to provide support
+///
 ## <font color="#00b0f0">Lesson 9</font> The Future of Automation: Flow
 ## <font color="#00b0f0">Lesson 10</font> Create New with Clicks
 ## <font color="#00b0f0">Lesson 11</font> Analytics
