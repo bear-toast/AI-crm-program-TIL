@@ -545,7 +545,30 @@
 		- same data type required
 		- ![](Pasted%20image%2020260609181220.png)
 #### Other ways to provide support
-///
+![](Pasted%20image%2020260611175718.png)
+![](Pasted%20image%2020260611175737.png)
+#### Workflow rules (deprecated)
+- sets workflow actions into motion when certain conditions are met
+- actions can take place immediatelyl, or on a specific date, according to a trigger
+- ![](Pasted%20image%2020260611180311.png)
+- considerations
+	- tasks
+		- the only type of record Workflow can create
+		- can be assigned to user, role, record owner, record creator, or account team
+		- a single task can only be assigned to one user (auto assigning to the owner of the record)
+	- field updates
+		- target or parent object updates only
+		- field updates occur before email alerts, tasks, and outbound messages
+	- outbound messages
+		- sends info out of salesforce to a designated endpoint (external service,,)
+#### Process builder (deprecated)
+- business processes automation with multiple criteria nodes
+	- create a record, update records, send email post to chatter, send custom notifications, use an action, submit for approval, launch a flow, launch a process, call apex, manage quip documents
+	- ![222](Pasted%20image%2020260611181019.png)
+#### Approval processes
+- ![](Pasted%20image%2020260611181126.png)
+- ![](Pasted%20image%2020260611181315.png)
+- ![](Pasted%20image%2020260611181329.png)
 ## <font color="#00b0f0">Lesson 9</font> The Future of Automation: Flow
 ## <font color="#00b0f0">Lesson 10</font> Create New with Clicks
 ## <font color="#00b0f0">Lesson 11</font> Analytics
