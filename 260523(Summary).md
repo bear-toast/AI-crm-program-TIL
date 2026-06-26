@@ -568,7 +568,8 @@
 #### Approval processes
 - ![](Pasted%20image%2020260611181126.png)
 - ![](Pasted%20image%2020260611181315.png)
-- ![](Pasted%20image%2020260611181329.png)
+- ![673](Pasted%20image%2020260611181329.png)
+![](Pasted%20image%2020260624105814.png)
 ## <font color="#00b0f0">Lesson 9</font> The Future of Automation: Flow
 ## <font color="#00b0f0">Lesson 10</font> Create New with Clicks
 ## <font color="#00b0f0">Lesson 11</font> Analytics
