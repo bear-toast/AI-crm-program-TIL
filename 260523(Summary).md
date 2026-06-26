@@ -569,9 +569,139 @@
 - ![](Pasted%20image%2020260611181126.png)
 - ![](Pasted%20image%2020260611181315.png)
 - ![673](Pasted%20image%2020260611181329.png)
-![](Pasted%20image%2020260624105814.png)
+![](Pasted%20image%2020260626172638.png)
 ## <font color="#00b0f0">Lesson 9</font> The Future of Automation: Flow
+#### Flow
+- automation
+	- replaces Workflow and Process Builder automation
+	- CRUD, Actions(Task, Send Email, Log a Call, Approval Process, Custom Notifications, start all other automations, session-based permission sets), Apex, Subflow, assignment, loop, decisions, outbound msg
+- core flow types
+	- screen flow
+		- A visual, interactive flow that guides users through a business process
+	- schedule-triggered flow
+		- A background automation that runs automatically at a specified time and frequency (once, daily, or weekly)
+	- autolaunched flow (No Trigger)
+		- A headless flow that runs in the background without user interaction. It cannot trigger on its own
+	- record-triggered flow
+		- A background automation that fires automatically when a Salesforce record is manipulated
+	- platform event-triggered flow
+		- A background automation that listens for messages sent across Salesforce or from external systems via an event bus
+	- record-triggered orchestration
+		- A high-level coordination tool that strings multiple individual flows (Screen and Autolaunched) together into a complex, multi-user, multi-step process
+- flow builder
+	- toolbox: contains the elements and resources to build the flow
+		- resource: what to use
+			- containers that hold data / provide values, store inputs, calc formulas
+				- variable, formula, constant, text template
+			- related resources may also be created when you add an element to flow
+		- elements: what to do
+			- actions, decisions, user interfaces
+				- screen, decision, update records, loop
+			- Interaction: display or collect info
+			- Logic: outcomes, set variable values and start a loop path
+			- Datat: CRUD records
+	- canvas: visual workspace where you can add and arrange elements, which displays the connection between these elements
+	- buttom bar: flow active or not, last saved, warnings or errors, debug log
+	- define resources -> add elements -> connect elements -> set start element
+		- manage flow permission is needed to open flows
+	- up to 50 versions of a Flow, but only one version active at a time
+- Testing and Debugging a flow
+	- governor limits
+- Naming conventions
+	- identify resources and elements in their API names 'camelCase' 'alpha and numeric'
+##### Flow requirements
+case: updating case priority automatically
+- Configure Start(Fast Field Updates)
+	- fast field update: **before-save** record-triggered flow
+	- object and fields are available in the flow
+	- Global variables : {!$ Record.Id} or {!$Flow.???} $ global
+- Add Assignment Element
+- Activate and Test Flow
+case: record-triggered flow
+- Configure Start
+	- An action and Related Records works on the record that triggers the flow or any other records
+	- **After Save Flow
+- Create Task Element
+	- flow actions are filtered by category or type
+	- flow resource - formulas
+- Activate and Test Flow
+case: add a decision element
+- Open Opportunity Closed Lost Task
+- Add a Decision Element
+- Add email to be sent
+- Add End element to the flow
+- test and activate
+##### Surface a flow with a lightning component
+Lightning component encompasses lwc
+- Faults
+	- exceptions that can happen during the processing of a Flow displaying either a customized or default error msg
+- admins using a custom button or link, a custom action, or a standard lightning component
+- admins can start flows from processes
+- devs can create lightning parges or visual force pages to surface flows
+- users - run flows permission required
+- activate flow and add / configure flow component to account record page
+##### Flow concepts
+- Flow
+- Flow Resources container
+- Database (Account, Contact, Opportunity, Custom objs, Sys objs)
+##### Automation app
+- centralizes flow management to handles Salesforce Flow automations from a single app
+- search, list view sorting, recently viewed flows or errored flows, components with links to the flow community and trailhead learning content
+
 ## <font color="#00b0f0">Lesson 10</font> Create New with Clicks
+*Configure: If it doesn't exist? build it with clicks!*
+#### custom object
+- capture and manage additional data based on your specific biz requirements
+- have the same Obj Manager Menu options as most standard objects
+- steps to create a custom object
+	- ![](Pasted%20image%2020260626175930.png)
+- lightning object creator
+	- custom object from a spreadsheet
+- setting access and security
+	- owd defaults : public read / write
+	- role hierarchy and sharing rules to grant additional access
+	- object permissions : off by default
+	- restriction rules
+#### custom tabs
+- a ui component which you create to display custom object data or other web content embedded in the application
+- have a Tab Style (color scheme and icon)
+- types
+	- custom object tabs
+	- web tabs
+	- visualforce tabs (classic)
+	- lighning page tabs (custom coded)
+		- lwc
+	- lightning component tabs (no code)
+		- lighning app builder
+#### Deploying metadata
+- one org -> another org : replicate customizations
+- metadata deployment tools
+	- change sets - setup menu - related orgs only (legacy)
+		- source org -> target org (deployment connection)
+		  outbound change set -> inbound change set
+		- 'deploy change sets', 'create and upload change sets' profile needed
+			- ![](Pasted%20image%2020260626182940.png)
+			- allow inbound changes (setup | environments | deploy | deployment settings)
+		- Setup Audit Trail
+			- admins can use the setup audit trail to track major metadata changes
+			- setup | security | view setup audit trail
+		- creating and uploading outbound change sets
+			- ![](Pasted%20image%2020260626183424.png)
+			- ![250](Pasted%20image%2020260626183443.png)
+		- profile setting in change sets
+			- ![348](Pasted%20image%2020260626183538.png)
+		- deploying inbound change sets
+			- ![440](Pasted%20image%2020260626183612.png)
+	- DevOps center - setup menu - related orgs only (modern)
+		- GitHub or BitBucket (automatic tracking)
+		- work items
+		- small to medium
+	- SFDX CLI - command line - related or unrelated orgs (modern)
+		- xml, vs code
+		- text-heavy and command-driven
+		- automated CI/CD pipelines
+	- ANT Migration Tool - command Line - related or unrelated orgs (legacy)
+
 ## <font color="#00b0f0">Lesson 11</font> Analytics
 #### Reports
 - lists or summaries, enable to aggregate and analyze data in different ways
