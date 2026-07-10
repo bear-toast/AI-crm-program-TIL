@@ -692,16 +692,34 @@ Lightning component encompasses lwc
 			- ![348](Pasted%20image%2020260626183538.png)
 		- deploying inbound change sets
 			- ![440](Pasted%20image%2020260626183612.png)
+		- Change set considerations
+			- not all metadata components and profile settings are supported by change sets, which should be manually added to the target org
+			- can't be used to delete metadata components in the target org, which must be deleted manually
+			- renamed metadata components - as new components by the incoming sys
+			- deployed metadata overwritess existing metadata. not merged
+			- once a change set is uploaded, all components are locked and can't be modified (source)
+				- components available in change sets
+				- change sets best practices
 	- DevOps center - setup menu - related orgs only (modern)
 		- GitHub or BitBucket (automatic tracking)
 		- work items
+			- used to track items through migration
+			- development envs can be launched via work items
+			- pull changes with a click to a source control sys, view pulls in devops center
+			- after team members review changes, they can be deployed from inside DevOps center
 		- small to medium
+		- point and click
+		- setup / managed package installation
 	- SFDX CLI - command line - related or unrelated orgs (modern)
 		- xml, vs code
 		- text-heavy and command-driven
 		- automated CI/CD pipelines
 	- ANT Migration Tool - command Line - related or unrelated orgs (legacy)
-
+#### Mobile Layout
+- sfdc mobile app, mobile browser
+- custom fields, record types and page layouts, custom objects - all available
+- admins can make customizations specific to the sfdc mobile app
+- 
 ## <font color="#00b0f0">Lesson 11</font> Analytics
 #### Reports
 - lists or summaries, enable to aggregate and analyze data in different ways
